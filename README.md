@@ -2,7 +2,7 @@
 
 A high-performance microservices architecture for real-time trading risk assessment, built with Spring Boot, Python, and Redis. This system processes orders, validates risk constraints, and provides comprehensive analytics.
 
-## 🚀 Architecture Overview
+## Architecture Overview
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -25,7 +25,7 @@ A high-performance microservices architecture for real-time trading risk assessm
                        └─────────────────┘    └─────────────────┘
 ```
 
-## 🔧 Tech Stack
+## Tech Stack
 
 | Component | Technology | Purpose |
 |-----------|------------|---------|
@@ -36,7 +36,7 @@ A high-performance microservices architecture for real-time trading risk assessm
 | **Load Testing** | k6 | Performance validation and benchmarking |
 | **Testing** | JUnit 5, pytest | Comprehensive unit and integration tests |
 
-## 🎯 Features
+## Features
 
 ### Risk Service (Spring Boot)
 - **Order Validation**: Notional caps, rate limits, exposure tracking
@@ -192,7 +192,7 @@ Environment variables for customization:
 | `HIGH_VOLATILITY_THRESHOLD` | 0.05 | High volatility threshold (5%) |
 | `BTC_STARTING_PRICE` | 45000 | Starting BTC price for simulation |
 
-## 🔐 Security & Risk Controls
+## Security & Risk Controls
 
 ### Risk Thresholds
 - **Notional Cap**: $10,000 per order
