@@ -27,35 +27,37 @@ A high-performance microservices architecture for real-time trading risk assessm
 
 ## Tech Stack
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| **Risk Service** | Spring Boot 3, Java 21 | Order validation, rate limiting, exposure tracking |
-| **Analytics Service** | Python 3.11, FastAPI | Volatility analysis, risk scoring, slippage calculation |
-| **Message Queue** | Redis Streams | High-throughput order processing pipeline |
-| **Monitoring** | Prometheus + Grafana | Real-time metrics and dashboards |
-| **Load Testing** | k6 | Performance validation and benchmarking |
-| **Testing** | JUnit 5, pytest | Comprehensive unit and integration tests |
+| Component         | Technology                             | Purpose                                           |
+|------------------|-----------------------------------------|---------------------------------------------------|
+| Risk Service      | Spring Boot 3, Java 21                  | REST API for order validation and risk logic      |
+| Analytics Service | Python 3.11, FastAPI                    | Volatility analysis and slippage modeling         |
+| Message Queue     | Redis Streams                          | Lightweight message queue for decoupled services  |
+| Monitoring        | Prometheus, Grafana (local)            | Metrics collection and visualization              |
+| Load Testing      | k6                                     | Simulated order traffic and performance testing   |
+| Testing           | JUnit 5, pytest                        | Unit and integration testing                      |
 
 ## Features
 
-### Risk Service (Spring Boot)
-- **Order Validation**: Notional caps, rate limits, exposure tracking
-- **Real-time Processing**: <20ms p95 latency for order assessment
-- **Rate Limiting**: 10 orders/minute per user with token bucket algorithm
-- **Exposure Management**: Per-user position tracking with Redis persistence
-- **Metrics**: Comprehensive Prometheus metrics with custom dashboards
+### Risk Service (Java, Spring Boot)
+- Validates orders with notional caps, rate limiting, and exposure checks
+- Handles ~1,000 requests/minute locally with <20ms p95 latency
+- Implements Redis-backed token bucket algorithm for per-user rate limiting
+- Exposes Prometheus-compatible metrics for observability
 
-### Analytics Service (Python)
-- **Volatility Analysis**: Real-time BTC price simulation with 1-minute rolling windows
-- **Risk Scoring**: Multi-factor risk assessment (volatility, slippage, user behavior)
-- **Slippage Modeling**: Market impact estimation based on order size and volatility
-- **Market Conditions**: Time-based risk adjustments (market hours, weekends)
+### Analytics Service (Python, FastAPI)
+- Simulates BTC volatility using 1-minute rolling standard deviation
+- Computes multi-factor risk score using volatility, slippage, and order metadata
+- Estimates market impact based on order size and simulated volatility
 
-### Performance Metrics
-- **Throughput**: 10,000+ orders/second simulated load testing
-- **Latency**: <20ms p95 response time (measured locally)
-- **Availability**: 99.9% uptime with health checks and circuit breakers
-- **Scalability**: Horizontal scaling with Redis clustering support
+### Monitoring
+- Local Prometheus + Grafana setup to track key metrics like order throughput, latency, and rejection rates
+- Dockerized environment to simulate full-stack behavior on local machines
+
+### Performance (Locally Simulated)
+- 10,000+ simulated orders per second under test conditions (using k6)
+- Sub-20ms p95 latency measured on MacBook Pro with 16GB RAM
+- Redis and FastAPI services remained within 60% CPU and <2GB RAM under sustained load
+
 
 ## 🚦 Quick Start
 
